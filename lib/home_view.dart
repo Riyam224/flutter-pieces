@@ -1,57 +1,54 @@
 // ignore_for_file: unused_local_variable, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+// todo
+import "package:flutter/cupertino.dart";
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key, required this.color1, required this.color2});
   final Color color1;
   final Color color2;
 
+  _showBtn() {
+    Platform.isIOS
+        ? CupertinoButton(
+            child: Text('ios button'),
+            onPressed: () {},
+          )
+        : TextButton(
+            style: TextButton.styleFrom(
+              backgroundColor: Colors.purple,
+            ),
+            onPressed: () {},
+            child: Text(
+              "android button",
+              style: TextStyle(color: Colors.white),
+            ),
+          );
+  }
+
   @override
   Widget build(BuildContext context) {
     // todo width of the screen
     var width = MediaQuery.of(context).size.width;
     return SafeArea(
-      // todo layout builder
-      child: Scaffold(body: LayoutBuilder(builder: (context, constraints) {
-        // todo show the height and width
-        log(constraints.minHeight.toString());
-        log(constraints.maxHeight.toString());
-        log(constraints.minWidth.toString());
-        log(constraints.maxWidth.toString());
-        return Container(
-          width: double.infinity,
-          height: constraints.maxHeight * 0.9,
-          color: Colors.amber,
-          child: constraints.minHeight < 100
-              ? Container()
-              : Column(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        width: double.infinity,
-                        color: Colors.pink,
-                      ),
-                    ),
-                    Expanded(
-                      child: SizedBox(
-                        height: 10,
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        width: double.infinity,
-                        color: const Color.fromARGB(255, 157, 128, 138),
-                      ),
-                    ),
-                  ],
-                ),
-        );
-      })),
-    );
+        // todo layout builder
+        child: Scaffold(
+            body: Container(
+      width: double.infinity,
+      height: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // todo
+          _showBtn(),
+        ],
+      ),
+    )));
   }
 }
 
