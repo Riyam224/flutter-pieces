@@ -1,5 +1,7 @@
 // ignore_for_file: unused_local_variable, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -13,98 +15,139 @@ class HomeView extends StatelessWidget {
     // todo width of the screen
     var width = MediaQuery.of(context).size.width;
     return SafeArea(
-      child: Scaffold(
-        body: Center(
-          child: Container(
-              width: 100,
-              height: 40,
-              child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.pink.withOpacity(0.3),
-                  ),
-                  onPressed: () {
-                    showModalBottomSheet(
-                        isScrollControlled: true,
-                        useSafeArea: true,
-                        context: context,
-                        builder: (context) => SizedBox(
-                              height: double.infinity,
-                              child: SingleChildScrollView(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(20.0),
-                                  child: Container(
-                                    width: double.infinity,
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          width: double.infinity,
-                                          height: 60,
-                                          color: const Color.fromARGB(
-                                              255, 197, 134, 130),
-                                        ),
-                                        SizedBox(
-                                          height: 20,
-                                        ),
-                                        Container(
-                                          width: double.infinity,
-                                          height: 60,
-                                          color: const Color.fromARGB(
-                                              255, 190, 101, 131),
-                                        ),
-                                        SizedBox(
-                                          height: 20,
-                                        ),
-                                        Container(
-                                          width: double.infinity,
-                                          height: 60,
-                                          color:
-                                              Color.fromARGB(255, 87, 151, 106),
-                                        ),
-                                        SizedBox(
-                                          height: 20,
-                                        ),
-                                        Container(
-                                          width: double.infinity,
-                                          height: 60,
-                                          color:
-                                              Color.fromARGB(255, 43, 112, 145),
-                                        ),
-                                        SizedBox(
-                                          height: 20,
-                                        ),
-                                        Container(
-                                          width: double.infinity,
-                                          height: 60,
-                                          color:
-                                              Color.fromARGB(255, 207, 84, 27),
-                                        ),
-                                        SizedBox(
-                                          height: 20,
-                                        ),
-                                        Container(
-                                          width: double.infinity,
-                                          height: 60,
-                                          color:
-                                              Color.fromARGB(255, 250, 246, 44),
-                                        ),
-                                        SizedBox(
-                                          height: 20,
-                                        ),
-                                      ],
+      // todo layout builder
+      child: Scaffold(body: LayoutBuilder(builder: (context, constraints) {
+        // todo show the height and width
+        log(constraints.minHeight.toString());
+        log(constraints.maxHeight.toString());
+        log(constraints.minWidth.toString());
+        log(constraints.maxWidth.toString());
+        return Container(
+          width: double.infinity,
+          height: constraints.maxHeight * 0.9,
+          color: Colors.amber,
+          child: constraints.minHeight < 100
+              ? Container()
+              : Column(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        width: double.infinity,
+                        color: Colors.pink,
+                      ),
+                    ),
+                    Expanded(
+                      child: SizedBox(
+                        height: 10,
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        width: double.infinity,
+                        color: const Color.fromARGB(255, 157, 128, 138),
+                      ),
+                    ),
+                  ],
+                ),
+        );
+      })),
+    );
+  }
+}
+
+// todo
+class ShowModelButtomSheetAndLockOrientation extends StatelessWidget {
+  const ShowModelButtomSheetAndLockOrientation({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+          width: 100,
+          height: 40,
+          child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.pink.withOpacity(0.3),
+              ),
+              onPressed: () {
+                showModalBottomSheet(
+                    isScrollControlled: true,
+                    useSafeArea: true,
+                    context: context,
+                    builder: (context) => SizedBox(
+                          height: double.infinity,
+                          child: SingleChildScrollView(
+                            child: Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Container(
+                                width: double.infinity,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      width: double.infinity,
+                                      height: 60,
+                                      color: const Color.fromARGB(
+                                          255, 197, 134, 130),
                                     ),
-                                  ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Container(
+                                      width: double.infinity,
+                                      height: 60,
+                                      color: const Color.fromARGB(
+                                          255, 190, 101, 131),
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Container(
+                                      width: double.infinity,
+                                      height: 60,
+                                      color: Color.fromARGB(255, 87, 151, 106),
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Container(
+                                      width: double.infinity,
+                                      height: 60,
+                                      color: Color.fromARGB(255, 43, 112, 145),
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Container(
+                                      width: double.infinity,
+                                      height: 60,
+                                      color: Color.fromARGB(255, 207, 84, 27),
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Container(
+                                      width: double.infinity,
+                                      height: 60,
+                                      color: Color.fromARGB(255, 250, 246, 44),
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ));
-                  },
-                  child: Text(
-                    'click',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ))),
-        ),
-      ),
+                            ),
+                          ),
+                        ));
+              },
+              child: Text(
+                'click',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ))),
     );
   }
 }
