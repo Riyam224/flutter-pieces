@@ -45,7 +45,8 @@ class HomeView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // todo
-          _showBtn(),
+          // _showBtn(),
+          CircularProgressIndicator.adaptive(),
         ],
       ),
     )));
